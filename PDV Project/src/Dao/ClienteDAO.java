@@ -10,6 +10,11 @@ import jdbc.ConnectionFactory;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+
 
 /**
  *
@@ -62,5 +67,52 @@ public class ClienteDAO {
     //Metodo excluirCliente
     public void excluirCliente(){
     
+    }
+    
+    //Metodo listarCliente
+    public List<Clientes> listarCliente(){
+        try {
+            
+            //criar  a lista
+            List<Clientes> lista = new ArrayList<>();
+            
+            //criar sql
+            String sql = "select * from tb_clientes";
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()){
+                Clientes obj  = new Clientes();
+                
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setNumero1(rs.getString("numero1"));
+                obj.setNumero2(rs.getString("numero2"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("Cidade"));
+                obj.setUf(rs.getString("estado"));
+                
+                lista.add(obj);
+                
+            }
+            
+            return lista;
+            
+
+            
+        } catch (SQLException erro) {
+            
+            JOptionPane.showMessageDialog(null, "DEU ESSE B.O: "+ erro);
+            
+            return null;
+        }
     }
 }
