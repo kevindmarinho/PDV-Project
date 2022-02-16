@@ -52,7 +52,7 @@ public class Funcionarios extends Clientes {
         this.usuario = usuario;
     }
     
-    public String generationUserNumber() throws SQLException{
+    public String generationUserNumber(){
         String numeroAleatorio = "";
         Random random = new Random();
         int number;

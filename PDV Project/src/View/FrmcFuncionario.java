@@ -21,122 +21,134 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmcFuncionario extends javax.swing.JFrame {
     
-    //Metodo Listar tabela 
+  //  Metodo Listar tabela 
     
-////////    public void listar(){
-////////        FuncionarioDAO dao  = new ClienteDAO();
-////////        List<Clientes> lista = dao.listarCliente();
-////////        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionario.getModel();
-////////        dados.setNumRows(0);
-////////        
-////////        for (Clientes c : lista){
-////////           dados.addRow(new Object[]{
-////////            c.getId(),
-////////            c.getNome(),
-////////            c.getRg(),
-////////            c.getCpf(),
-////////            c.getEmail(),
-////////            c.getNumero1(),
-////////            c.getNumero2(),
-////////            c.getCep(),
-////////            c.getEndereco(),
-////////            c.getNumero(),
-////////            c.getBairro(),
-////////            c.getCidade(),
-////////            c.getUf()
-////////            
-////////        
-////////            });
-////////        }
-////////        
-////////    }
-////////
+    public void listar(){
+        FuncionarioDAO dao  = new FuncionarioDAO();
+        List<Funcionarios> lista = dao.listarFuncionario();
+        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionario.getModel();
+        dados.setNumRows(0);
+        
+        for (Funcionarios c : lista){
+           dados.addRow(new Object[]{
+            c.getNome(),
+            c.getUsuario(),
+            c.getCpf(),
+            c.getEmail(),
+            c.getCargo(),
+            c.getNivel_acesso(),
+            c.getNumero1(),
+            c.getCep(),
+            c.getEndereco(),
+            c.getNumero(),
+            c.getBairro(),
+            c.getCidade(),
+            c.getUf()          
+        
+            });
+        }
+        
+    }
+
     public FrmcFuncionario() {
        initComponents();
-    // desativaCampo();
+       desativaCampo();
 
     }
-////////    
-////////    private void limparTexto(){
-////////        //limpar caixa de texto 
-////////        txtUsuario.setText("");
-////////        txtNome.setText("");
-////////       // txtRg.setText("");
-////////        txtCpf.setText("");
-////////        txtEmail.setText("");
-////////        txtNumero1.setText("");
-////////        txtNumero2.setText("");
-////////        txtCep.setText("");
-////////        txtEndereco.setText("");
-////////        txtNumero.setText("");
-////////        txtBairro.setText("");
-////////        txtCidade.setText("");
-////////        //cbUf.getSelectedItem().toString();
-////////    }
-////////    
-////////      private void desativaCampo(){
-////////          //desativar campo de id 
-////////          txtUsuario.setEditable(false);
-////////      }
-////////      
-////////      private int checarCampos(){
-////////          //checar se os campos estao vazios 
-////////          int validaCampo = 0;
-////////          
-////////          String Nome = txtNome.getText().toString();
-////////         // String Rg = txtRg.getText().toString();
-////////          String Cpf = txtCpf.getText().toString();
-////////          String Email = txtEmail.getText().toString();
-////////          String Numero1 = txtNumero1.getText().toString();
-////////          String Cep = txtCep.getText().toString();
-////////          String Endereco = txtEndereco.getText().toString();
-////////          String Numero = txtNumero.getText().toString();
-////////          String Bairro = txtBairro.getText().toString();
-////////          String Cidade = txtCidade.getText().toString();
-////////          
-////////          if(Nome.equals("")){
-////////              validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse nome!");
-////////          }  
-////////           if(Rg.equals("")){
-////////               validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse RG!");
-////////          }
-////////            if(Cpf.equals("")){
-////////                validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse CPF!");
-////////          }
-////////             if(Email.equals("")){
-////////                 validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse Email!");
-////////          }
-////////              if(Numero1.equals("")){
-////////                  validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse Celular!");
-////////          }
-////////               if(Cep.equals("")){
-////////                   validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse CEP");
-////////          }
-////////                if(Endereco.equals("")){
-////////                    validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse Endereço");
-////////          }
-////////                 if(Numero.equals("")){
-////////                     validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse Numero");
-////////          }
-////////                  if(Bairro.equals("")){
-////////                      validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra desse Bairro");
-////////          }
-////////                   if(Cidade.equals("")){
-////////                       validaCampo = 1;
-////////              JOptionPane.showMessageDialog(null, "preenche essa porra dessa Cidades");
-////////          }
-////////          return validaCampo;
-////////      }
-////////
+    
+    private void limparTexto(){
+        //limpar caixa de texto 
+        txtUsuario.setText("");
+        txtNome.setText("");
+        txtCpf.setText("");
+        txtEmail.setText("");
+        txtNumero1.setText("");
+        txtCep.setText("");
+        txtEndereco.setText("");
+        txtNumero.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        txtSenha.setText("");
+        txtCargo.setText("");
+    }
+    
+      private void desativaCampo(){
+          //desativar campo de id 
+          txtUsuario.setEditable(false);
+      }
+      
+      private int checarCampos(){
+          //checar se os campos estao vazios 
+          int validaCampo = 0;
+          String camposVazios = "CAMPOS OBRIGATÓRIOS : \n";
+          
+          String Nome = txtNome.getText().toString();
+          String Cpf = txtCpf.getText().toString();
+          String Email = txtEmail.getText().toString();
+          String Numero1 = txtNumero1.getText().toString();
+          String Cep = txtCep.getText().toString();
+          String Endereco = txtEndereco.getText().toString();
+          String Numero = txtNumero.getText().toString();
+          String Bairro = txtBairro.getText().toString();
+          String Cidade = txtCidade.getText().toString();
+          String Senha = txtSenha.getText().toString();
+          String Cargo = txtCargo.getText().toString();
+          String Nivel_acesso = (cbNivel.getSelectedItem().toString());
+          
+        if (Nome.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nNome";
+        }
+        if (Cpf.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nCPF";
+        }
+        if (Email.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nEmail";
+        }
+        if (Numero1.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nCelular";
+        }
+        if (Cep.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nCEP";
+        }
+        if (Endereco.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nEndereço";
+        }
+        if (Numero.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nNúmero";
+        }
+        if (Bairro.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nBairro";
+        }
+        if (Cidade.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nCidade";
+        }
+        if (Senha.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nSenha";
+        }
+        if (Cargo.equals("")) {
+            validaCampo = 1;
+            camposVazios += "\nCargo";
+        }
+        if (Nivel_acesso.equals(".")) {
+            validaCampo = 1;
+            camposVazios += "\nNível de acesso";
+        }
+        if (validaCampo == 1) {
+            JOptionPane.showMessageDialog(null, camposVazios);
+        }
+        return validaCampo;
+    }
+
 ////////    /**
 ////////     * This method is called from within the constructor to initialize the form.
 ////////     * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,11 +198,12 @@ public class FrmcFuncionario extends javax.swing.JFrame {
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaFuncionario = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sure Sales - Cadastro Funcionario");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -210,7 +223,7 @@ public class FrmcFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(678, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,34 +460,34 @@ public class FrmcFuncionario extends javax.swing.JFrame {
                                 .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtSenha)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtSenha)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btnSalvar)
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jButton9))
+                                        .addGap(5, 5, 5)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel18)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(31, 31, 31)
+                                        .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton9)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -485,6 +498,9 @@ public class FrmcFuncionario extends javax.swing.JFrame {
                                 .addComponent(cbUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnSalvar, jButton9});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -536,12 +552,14 @@ public class FrmcFuncionario extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel17)
                         .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9)
-                    .addComponent(btnSalvar))
-                .addGap(24, 24, 24))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnSalvar, jButton9});
 
         jTabbedPane1.addTab("Dados pessoais", jPanel2);
 
@@ -551,6 +569,11 @@ public class FrmcFuncionario extends javax.swing.JFrame {
         jLabel14.setText("Nome : ");
 
         txtPesquisa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaActionPerformed(evt);
+            }
+        });
         txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPesquisaKeyPressed(evt);
@@ -570,52 +593,55 @@ public class FrmcFuncionario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "CPF", "E-mail", "Cargo", "Nível Acesso", "Contato  1", "CEP", "Endereço", "Usuário", "Bairro", "Cidade", "Estado"
+                "Nome", "Usuário", "CPF", "E-mail", "Cargo", "Nível Acesso", "Celular", "CEP", "Endereço", "Número", "Bairro", "Cidade", "Estado"
             }
         ));
         tabelaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaFuncionarioMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaFuncionarioMousePressed(evt);
+            }
         });
         jScrollPane1.setViewportView(tabelaFuncionario);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("NOVO");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnNovo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnNovo.setText("NOVO");
+        btnNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnNovoMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNovoActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setText("EDITAR");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEditar.setText("EDITAR");
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btnEditarMouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setText("EXCLUIR");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                btnExcluirMouseClicked(evt);
             }
         });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -635,14 +661,17 @@ public class FrmcFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(249, 249, 249)
-                        .addComponent(jButton2)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton3)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton5))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnExcluir))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEditar, btnExcluir, btnNovo});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -655,11 +684,13 @@ public class FrmcFuncionario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditar, btnExcluir, btnNovo});
 
         jTabbedPane1.addTab("Consultar clientes", jPanel3);
 
@@ -668,16 +699,15 @@ public class FrmcFuncionario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -697,50 +727,51 @@ public class FrmcFuncionario extends javax.swing.JFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // Botao pesquisar
-//        String nome = "%" + txtPesquisa.getText() + "%";
-//        ClienteDAO dao  = new ClienteDAO();
-//        List<Clientes> lista = dao.buscarClientePorNome(nome);
-//        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionario.getModel();
-//        dados.setNumRows(0);
-//        
-//        for (Clientes c : lista){
-//           dados.addRow(new Object[]{
-//            c.getId(),
-//            c.getNome(),
-//            c.getRg(),
-//            c.getCpf(),
-//            c.getEmail(),
-//            c.getNumero1(),
-//            c.getNumero2(),
-//            c.getCep(),
-//            c.getEndereco(),
-//            c.getNumero(),
-//            c.getBairro(),
-//            c.getCidade(),
-//            c.getUf()
-//            
-//        
-//            });
-//        }
+        String nome = "%" + txtPesquisa.getText() + "%";
+        FuncionarioDAO dao  = new FuncionarioDAO();
+        List<Funcionarios> lista = dao.buscarFuncionarioPorNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionario.getModel();
+        dados.setNumRows(0);
+        
+        for (Funcionarios c : lista){
+           dados.addRow(new Object[]{
+            c.getNome(),
+            c.getUsuario(),
+            c.getCpf(),
+            c.getEmail(),
+            c.getCargo(),
+            c.getNivel_acesso(),
+            c.getNumero1(),
+            c.getCep(),
+            c.getEndereco(),
+            c.getNumero(),
+            c.getBairro(),
+            c.getCidade(),
+            c.getUf()
+            
+        
+            });
+        }
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        // botao novo
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_btnNovoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // botao salvar
         
-       //if(checarCampos()== 0){
+       if(checarCampos()== 0){
             Funcionarios obj = new Funcionarios ();           
 
 
@@ -758,25 +789,22 @@ public class FrmcFuncionario extends javax.swing.JFrame {
             obj.setCargo(txtCargo.getText());
             obj.setNivel_acesso(cbNivel.getSelectedItem().toString());
             
-        try {
-            obj.setUsuario(obj.generationUserNumber());
-        } catch (SQLException ex) {
-            Logger.getLogger(FrmcFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
             FuncionarioDAO dao = new FuncionarioDAO();
-            dao.cadastrarFuncionario(obj);
-            
-           // try {
-             //   obj.setUsuario(txtUsuario.getText());              
-               // dao.alterarCliente(obj);
-               // limparTexto();
-           //} catch (Exception e) {               
-             //   dao.cadastrarCliente(obj);
-               // limparTexto();
-           //}
 
-       // }
+            try {
+                int numero = Integer.parseInt(txtUsuario.getText());
+                obj.setUsuario(txtUsuario.getText());              
+                dao.alterarFuncionario(obj);
+                limparTexto();
+                
+            }catch (Exception e) {
+                obj.setUsuario(obj.generationUserNumber());
+                dao.cadastrarFuncionario(obj);
+                limparTexto();
+           }
+            
+
+        }
            
             
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -784,62 +812,61 @@ public class FrmcFuncionario extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // Carregar lista
         
-        //listar();
+        listar();
     }//GEN-LAST:event_formWindowActivated
 
     private void tabelaFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaFuncionarioMouseClicked
         // TODO add your handling code here:
         
-        
     }//GEN-LAST:event_tabelaFuncionarioMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         // Editar dados 
-//        jTabbedPane1.setSelectedIndex(0);
-//        
-//        txtUsuario.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),0).toString());
-//        txtNome.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),1).toString());
-//       // txtRg.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(),2).toString());
-//        txtCpf.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),3).toString());
-//        txtEmail.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),4).toString());
-//        txtNumero1.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),5).toString());
-//        txtNumero2.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),6).toString());
-//        txtCep.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),7).toString());
-//        txtEndereco.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),8).toString());
-//        txtNumero.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),9).toString());
-//        txtBairro.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),10).toString());
-//        txtCidade.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),11).toString());
-//        cbUf.setSelectedItem(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),12).toString());
-//        
-       
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // Novo dado
-       // jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane1.setSelectedIndex(0);
         
-    }//GEN-LAST:event_jButton2MouseClicked
+        txtNome.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),0).toString());
+        txtUsuario.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),1).toString());        
+        txtCpf.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),2).toString());
+        txtEmail.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),3).toString());
+        txtCargo.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),4).toString());
+        cbNivel.setSelectedItem(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),5).toString());
+        txtNumero1.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),6).toString());
+        txtCep.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),7).toString());
+        txtEndereco.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),8).toString());
+        txtNumero.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),9).toString());
+        txtBairro.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),10).toString());
+        txtCidade.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),11).toString());
+        cbUf.setSelectedItem(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),12).toString());
+        
+       
+    }//GEN-LAST:event_btnEditarMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void btnNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoMouseClicked
+        // Novo dado
+        jTabbedPane1.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_btnNovoMouseClicked
+
+    private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
                // botao excluir 
-//        Clientes obj = new Clientes ();  
-//        
-//            try {                      
-//                    obj.setId(Integer.parseInt(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),0).toString()));                 
-//            
-//                    ClienteDAO dao = new ClienteDAO();
-//        
-//                    dao.excluirCliente(obj);
-//                    limparTexto();
-//           } catch (Exception e) {               
-//                JOptionPane.showMessageDialog(null, "DEU B.O" + e );
-//           }
+        Funcionarios obj = new Funcionarios ();  
+        
+            try {                      
+                    obj.setUsuario(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(),1).toString());                 
+            
+                    FuncionarioDAO dao = new FuncionarioDAO();
+        
+                    dao.excluirFuncionario(obj);
+                    limparTexto();
+           } catch (Exception e) {               
+                JOptionPane.showMessageDialog(null, "DEU B.O" + e );
+           }
                 
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_btnExcluirMouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        //limparTexto();
+        limparTexto();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
@@ -888,31 +915,31 @@ public class FrmcFuncionario extends javax.swing.JFrame {
 
     private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
         // pesquisar nome 
-//           String nome = "%" + txtPesquisa.getText() + "%";
-//           ClienteDAO dao  = new ClienteDAO();
-//           List<Clientes> lista = dao.buscarClientePorNome(nome);
-//           DefaultTableModel dados = (DefaultTableModel) tabelaFuncionario.getModel();
-//           dados.setNumRows(0);
-//
-//           for (Clientes c : lista){
-//              dados.addRow(new Object[]{
-//               c.getId(),
-//               c.getNome(),
-//               c.getRg(),
-//               c.getCpf(),
-//               c.getEmail(),
-//               c.getNumero1(),
-//               c.getNumero2(),
-//               c.getCep(),
-//               c.getEndereco(),
-//               c.getNumero(),
-//               c.getBairro(),
-//               c.getCidade(),
-//               c.getUf()
-//
-//
-//               });
-//           }
+        String nome = "%" + txtPesquisa.getText() + "%";
+        FuncionarioDAO dao  = new FuncionarioDAO();
+        List<Funcionarios> lista = dao.buscarFuncionarioPorNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionario.getModel();
+        dados.setNumRows(0);
+        
+        for (Funcionarios c : lista){
+           dados.addRow(new Object[]{
+            c.getNome(),
+            c.getUsuario(),
+            c.getCpf(),
+            c.getEmail(),
+            c.getCargo(),
+            c.getNivel_acesso(),
+            c.getNumero1(),
+            c.getCep(),
+            c.getEndereco(),
+            c.getNumero(),
+            c.getBairro(),
+            c.getCidade(),
+            c.getUf()
+            
+        
+            });
+        }
     }//GEN-LAST:event_txtPesquisaKeyPressed
 
     private void txtUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyReleased
@@ -926,6 +953,14 @@ public class FrmcFuncionario extends javax.swing.JFrame {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void tabelaFuncionarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaFuncionarioMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelaFuncionarioMousePressed
+
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -964,13 +999,13 @@ public class FrmcFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbNivel;
     private javax.swing.JComboBox<String> cbUf;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -992,7 +1027,7 @@ public class FrmcFuncionario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabelaFuncionario;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCargo;
