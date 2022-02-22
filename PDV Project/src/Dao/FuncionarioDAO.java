@@ -56,7 +56,7 @@ public class FuncionarioDAO {
             stmt.execute();
             stmt.close();
             
-            JOptionPane.showMessageDialog(null, "Cadastramo o malandro!");
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!\n\nLogin: " + obj.getUsuario());
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "DEU B.O" + erro );
         }
@@ -130,7 +130,7 @@ public class FuncionarioDAO {
             stmt.execute();
             stmt.close();
             
-            JOptionPane.showMessageDialog(null, "Alteramo o cara!");
+            JOptionPane.showMessageDialog(null, "Usuário alterado!");
         } catch (SQLException erro) {
             JOptionPane.showConfirmDialog(null, "DEU ESSE B.O :" + erro);
         }
@@ -149,7 +149,7 @@ public class FuncionarioDAO {
             stmt.execute();
             stmt.close();
             
-            JOptionPane.showMessageDialog(null, "Apagamos o brother!");
+            JOptionPane.showMessageDialog(null, "Usuário apagado!");
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "DEU ESSE B.O" + erro);
         }
@@ -212,7 +212,7 @@ public class FuncionarioDAO {
             
             if (rs.next()) {
                 //usuario logado
-                JOptionPane.showMessageDialog(null, "Bem-vindo ao Sistema!");
+                JOptionPane.showMessageDialog(null, "Bem-vindo ao Sure Sales!");
                 frmMenu tela = new frmMenu();
                 tela.usuarioLogado = rs.getString("nome");
                 tela.setVisible(true);
