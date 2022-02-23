@@ -121,6 +121,10 @@ public class Fornecedores {
         this.estado = estado;
     }
     
+    @Override
+    public String toString(){
+        return this.getRazao();
+    }
     
 }
 

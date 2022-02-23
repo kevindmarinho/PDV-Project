@@ -54,7 +54,7 @@ public class ClienteDAO {
             stmt.execute();
             stmt.close();
             
-            JOptionPane.showMessageDialog(null, "Cadastramo o malandro!");
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "DEU B.O" + erro );
         }
